@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Shadow DOM demo</h1>
+    <div id="open-host"></div>
+    <div id="closed-host"></div>
+    <script>
+      const openRoot = document.querySelector('#open-host').attachShadow({ mode: 'open' });
+      openRoot.innerHTML = `
+        <label for="nickname">Nickname</label>
+        <input id="nickname">
+        <button>Save</button>
+        <p id="status">Not saved</p>
+      `;
+      openRoot.querySelector('button').addEventListener('click', () => {
+        const value = openRoot.querySelector('#nickname').value;
+        openRoot.querySelector('#status').textContent = 'Saved: ' + value;
+      });
+
+      const closedRoot = document.querySelector('#closed-host').attachShadow({ mode: 'closed' });
+      closedRoot.innerHTML = '<button>Secret</button>';
+    </script>
+  </body>
+</html>
