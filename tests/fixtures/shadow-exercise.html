@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Newsletter</h1>
+    <div id="signup-host"></div>
+    <div id="promo-host"></div>
+    <script>
+      const signupRoot = document.querySelector('#signup-host').attachShadow({ mode: 'open' });
+      signupRoot.innerHTML = `
+        <input type="checkbox" id="subscribe">
+        <label for="subscribe">Subscribe to the newsletter</label>
+        <p id="message">You are not subscribed</p>
+      `;
+      signupRoot.querySelector('#subscribe').addEventListener('change', (event) => {
+        signupRoot.querySelector('#message').textContent = event.target.checked
+          ? 'You are subscribed'
+          : 'You are not subscribed';
+      });
+
+      const promoRoot = document.querySelector('#promo-host').attachShadow({ mode: 'closed' });
+      promoRoot.innerHTML = '<a href="#">Get 20% off</a>';
+    </script>
+  </body>
+</html>
